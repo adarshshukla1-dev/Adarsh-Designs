@@ -1,158 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adarsh Shukla | Creative Services</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adarsh Shukla | Creative Services</title>
 
-  <!-- Google Fonts + Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<!-- Google Fonts + FontAwesome -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<!-- AOS Animation Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
-    body { background: #0d0d0d; color: #fff; }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth;}
+body{background:#0d0d0d;color:#fff;opacity:0;transition:opacity 1s ease;}
+.loaded{opacity:1;}
 
-    /* === HERO SECTION === */
-    .hero {
-      height: 100vh;
-      background: linear-gradient(135deg, rgba(255,102,0,0.8), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1400&q=80');
-      background-size: cover; background-position: center;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center; padding: 0 20px;
-    }
-    .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 15px; }
-    .hero h2 { font-size: 1.5rem; color: #ff9900; margin-bottom: 25px; }
-    .btn {
-      background: #ff6600; color: #fff; padding: 12px 28px; border-radius: 30px; text-decoration: none;
-      font-weight: 600; transition: 0.3s;
-    }
-    .btn:hover { transform: scale(1.1); box-shadow: 0 0 15px #ff6600; }
+/* Scroll Progress Bar */
+#progress-bar{position:fixed;top:0;left:0;height:5px;background:#ff6600;width:0%;z-index:9999;transition:0.2s;}
 
-    /* === SERVICES === */
-    section { padding: 80px 10%; text-align: center; }
-    h2.section-title { font-size: 2.2rem; margin-bottom: 50px; color: #ff9900; }
+/* Cursor Glow */
+.cursor-glow{position:fixed;top:0;left:0;width:20px;height:20px;background:radial-gradient(circle, rgba(255,102,0,0.8) 0%, transparent 80%);border-radius:50%;pointer-events:none;z-index:1000;}
 
-    .services { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
-    .card {
-      background: linear-gradient(135deg, #1a1a1a, #262626);
-      border-radius: 15px; padding: 25px; width: 260px; transition: 0.3s;
-    }
-    .card:hover { transform: translateY(-10px); box-shadow: 0 0 15px rgba(255,102,0,0.5); }
-    .card i { font-size: 2rem; color: #ff6600; margin-bottom: 15px; }
-    .card h4 { margin-bottom: 10px; }
+/* HERO */
+.hero{height:100vh;background:linear-gradient(135deg, rgba(255,102,0,0.8), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1400&q=80');background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 20px;}
+.hero h1{font-size:3rem;font-weight:700;margin-bottom:15px;}
+.hero h2{font-size:1.5rem;color:#ff9900;margin-bottom:25px;}
+.btn{background:#ff6600;color:#fff;padding:12px 28px;border-radius:30px;text-decoration:none;font-weight:600;transition:0.3s;}
+.btn:hover{transform:scale(1.1);box-shadow:0 0 15px #ff6600;}
 
-    /* === PORTFOLIO === */
-    .portfolio-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;
-    }
-    .portfolio-grid img {
-      width: 100%; border-radius: 12px; transition: 0.3s;
-    }
-    .portfolio-grid img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(255,102,0,0.6);
-    }
+/* SECTIONS */
+section{padding:80px 10%;text-align:center;}
+h2.section-title{font-size:2.2rem;margin-bottom:50px;color:#ff9900;}
 
-    /* === ABOUT === */
-    .about img {
-      width: 150px; border-radius: 50%; margin-bottom: 20px;
-      animation: float 3s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    .about p { max-width: 700px; margin: 0 auto; line-height: 1.7; color: #ccc; }
+/* SERVICES */
+.services{display:flex;flex-wrap:wrap;justify-content:center;gap:25px;}
+.card{background:linear-gradient(135deg,#1a1a1a,#262626);border-radius:15px;padding:25px;width:260px;transition:0.3s;}
+.card:hover{transform:translateY(-10px);box-shadow:0 0 15px rgba(255,102,0,0.5);}
+.card i{font-size:2rem;color:#ff6600;margin-bottom:15px;}
+.card h4{margin-bottom:10px;}
 
-    /* === CONTACT === */
-    .contact p { margin: 10px 0; font-size: 1rem; color: #ddd; }
-    .btn-whatsapp {
-      background: #25D366; color: #fff; padding: 12px 24px; border-radius: 25px;
-      display: inline-block; margin-top: 20px; transition: 0.3s;
-    }
-    .btn-whatsapp:hover { transform: scale(1.05); box-shadow: 0 0 20px #25D366; }
+/* PORTFOLIO */
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+.portfolio-grid img{width:100%;border-radius:12px;transition:0.3s;}
+.portfolio-grid img:hover{transform:scale(1.05);box-shadow:0 0 15px rgba(255,102,0,0.6);}
 
-    /* === SCROLL ANIMATION === */
-    .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+/* ABOUT */
+.about img{width:150px;border-radius:50%;margin-bottom:20px;animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.about p{max-width:700px;margin:0 auto;line-height:1.7;color:#ccc;}
 
-    footer {
-      background: #111; padding: 20px; text-align: center; color: #aaa;
-      font-size: 0.9rem;
-    }
-  </style>
+/* CONTACT */
+.contact p{margin:10px 0;font-size:1rem;color:#ddd;}
+.btn-whatsapp{background:#25D366;color:#fff;padding:12px 24px;border-radius:25px;display:inline-block;margin-top:20px;transition:0.3s;}
+.btn-whatsapp:hover{transform:scale(1.05);box-shadow:0 0 20px #25D366;}
+
+/* BACK TO TOP BUTTON */
+#topBtn{position:fixed;bottom:30px;right:30px;background:#ff6600;color:#fff;border:none;border-radius:50%;padding:15px;font-size:18px;cursor:pointer;box-shadow:0 0 10px rgba(255,102,0,0.6);display:none;transition:0.3s;}
+#topBtn:hover{transform:scale(1.1);}
+
+/* SCROLL ANIMATION */
+.fade-in{opacity:0;transform:translateY(30px);transition:all 0.8s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+</style>
 </head>
 
 <body>
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Adarsh Shukla</h1>
-    <h2 id="typewriter"></h2>
-    <a href="#contact" class="btn">Order on WhatsApp</a>
-  </section>
+<!-- Cursor Glow -->
+<div class="cursor-glow"></div>
 
-  <!-- SERVICES -->
-  <section id="services" class="fade-in">
-    <h2 class="section-title">💼 My Services</h2>
-    <div class="services">
-      <div class="card"><i class="fa-solid fa-pen-nib"></i><h4>Content Writing</h4><p>Engaging blogs, captions & SEO-friendly articles.</p></div>
-      <div class="card"><i class="fa-solid fa-brush"></i><h4>Canva Designs</h4><p>Custom social media posts, thumbnails & posters.</p></div>
-      <div class="card"><i class="fa-solid fa-video"></i><h4>Reel Scripts</h4><p>Creative short-form content ideas & hooks.</p></div>
-      <div class="card"><i class="fa-solid fa-laptop"></i><h4>Freelance Tasks</h4><p>Quick ₹100–₹300 design or writing gigs.</p></div>
-    </div>
-  </section>
+<!-- Scroll Progress Bar -->
+<div id="progress-bar"></div>
 
-  <!-- PORTFOLIO -->
-  <section id="portfolio" class="fade-in">
-    <h2 class="section-title">🎨 My Work</h2>
-    <div class="portfolio-grid">
-      <img src="https://images.unsplash.com/photo-1611162616305-4ec3060a058e?auto=format&fit=crop&w=600&q=80" alt="">
-      <img src="https://images.unsplash.com/photo-1607083206173-0c6c3d0f6c1a?auto=format&fit=crop&w=600&q=80" alt="">
-      <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=600&q=80" alt="">
-      <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80" alt="">
-    </div>
-  </section>
+<!-- HERO -->
+<section class="hero">
+  <h1>Adarsh Shukla</h1>
+  <h2 id="typewriter"></h2>
+  <a href="#contact" class="btn">Order on WhatsApp</a>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about" class="about fade-in">
-    <h2 class="section-title">🙋‍♂️ About Me</h2>
-    <img src="https://avatars.githubusercontent.com/u/9919?v=4" alt="Adarsh">
-    <p>Hey, I'm Adarsh — a passionate content creator and Canva designer who loves turning ideas into visuals. From designing my first JEE Mantra poster to creating templates for local brands, I aim to bring clarity, color, and creativity to every project.</p>
-  </section>
+<!-- SERVICES -->
+<section id="services" class="fade-in">
+  <h2 class="section-title">💼 My Services</h2>
+  <div class="services">
+    <div class="card" data-tilt data-aos="zoom-in"><i class="fa-solid fa-pen-nib"></i><h4>Content Writing</h4><p>Engaging blogs, captions & SEO-friendly articles.</p></div>
+    <div class="card" data-tilt data-aos="zoom-in"><i class="fa-solid fa-brush"></i><h4>Canva Designs</h4><p>Custom social media posts, thumbnails & posters.</p></div>
+    <div class="card" data-tilt data-aos="zoom-in"><i class="fa-solid fa-video"></i><h4>Reel Scripts</h4><p>Creative short-form content ideas & hooks.</p></div>
+    <div class="card" data-tilt data-aos="zoom-in"><i class="fa-solid fa-laptop"></i><h4>Freelance Tasks</h4><p>Quick ₹100–₹300 design or writing gigs.</p></div>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="contact fade-in">
-    <h2 class="section-title">📞 Contact Me</h2>
-    <p><i class="fa-solid fa-envelope"></i> adarshshuklakota18@gmail.com</p>
-    <p><i class="fa-brands fa-instagram"></i> @adarshdesigns</p>
-    <a href="https://wa.me/919694793883" class="btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Message on WhatsApp</a>
-  </section>
+<!-- PORTFOLIO -->
+<section id="portfolio" class="fade-in">
+  <h2 class="section-title">🎨 My Work</h2>
+  <div class="portfolio-grid">
+    <img src="https://images.unsplash.com/photo-1611162616305-4ec3060a058e?auto=format&fit=crop&w=600&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1607083206173-0c6c3d0f6c1a?auto=format&fit=crop&w=600&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=600&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80" alt="">
+  </div>
+</section>
 
-  <footer>Built with ❤️ & caffeine by Adarsh Shukla ☕</footer>
+<!-- ABOUT -->
+<section id="about" class="about fade-in">
+  <h2 class="section-title">🙋‍♂️ About Me</h2>
+  <img src="https://avatars.githubusercontent.com/u/9919?v=4" alt="Adarsh">
+  <p>Hey, I'm Adarsh — a passionate content creator and Canva designer turning ideas into visuals. From designing my first JEE Mantra poster to creating templates for local brands, I aim to bring clarity, color, and creativity to every project.</p>
+</section>
 
-  <!-- === JS === -->
-  <script>
-    // Typewriter Effect
-    const text = "Creative Canva Designs & Engaging Content";
-    let i = 0;
-    function typing() {
-      if (i < text.length) {
-        document.getElementById("typewriter").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typing, 60);
-      }
-    }
-    typing();
+<!-- CONTACT -->
+<section id="contact" class="contact fade-in">
+  <h2 class="section-title">📞 Contact Me</h2>
+  <p><i class="fa-solid fa-envelope"></i> adarshshuklakota18@gmail.com</p>
+  <p><i class="fa-brands fa-instagram"></i> @adarshdesigns</p>
+  <a href="https://wa.me/919694793883" class="btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Message on WhatsApp</a>
+</section>
 
-    // Scroll Animation
-    window.addEventListener('scroll', () => {
-      document.querySelectorAll('.fade-in').forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-          el.classList.add('visible');
-        }
-      });
-    });
-  </script>
+<!-- BACK TO TOP -->
+<button id="topBtn"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- FOOTER -->
+<footer>Built with ❤️ & caffeine by Adarsh Shukla ☕</footer>
+
+<!-- JS Libraries -->
+<script src="https://unpkg.com/vanilla-tilt"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+// Page load fade-in
+window.addEventListener('load',()=>{document.body.classList.add('loaded');AOS.init({duration:1000});});
+
+// Typewriter Effect
+const text = "Creative Canva Designs & Engaging Content";
+let i = 0;
+function typing(){if(i<text.length){document.getElementById("typewriter").innerHTML+=text.charAt(i);i++;setTimeout(typing,60);}}
+typing();
+
+// Scroll Progress Bar
+window.onscroll=()=>{const scrollTop=document.documentElement.scrollTop;const height=document.documentElement.scrollHeight-document.documentElement.clientHeight;const scrolled=(scrollTop/height)*100;document.getElementById("progress-bar").style.width=scrolled+"%";};
+
+// Fade-in sections on scroll
+window.addEventListener('scroll',()=>{document.querySelectorAll('.fade-in').forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-100){el.classList.add('visible');}});});
+
+// Back to top button
+const topBtn=document.getElementById("topBtn");
+window.addEventListener("scroll",()=>{window.scrollY>400?topBtn.style.display="block":topBtn.style.display="none";});
+topBtn.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
+
+// Cursor Glow
+const glow=document.querySelector('.cursor-glow');
+document.addEventListener('mousemove',e=>{glow.style.left=e.pageX-10+'px';glow.style.top=e.pageY-10+'px';});
+
+// Tilt effect
+VanillaTilt.init(document.querySelectorAll(".card"),{max:15,speed:300,glare:true,"max-glare":0.4});
+
+// Floating emojis
+setInterval(()=>{let emoji=document.createElement('div');emoji.innerHTML=['✨','💡','🔥','🎨'][Math.floor(Math.random()*4)];emoji.classList.add('emoji');emoji.style.position='absolute';emoji.style.bottom='0';emoji.style.left=Math.random()*100+'vw';emoji.style.fontSize='2rem';emoji.style.animation='floatEmoji 6s linear infinite';document.body.appendChild(emoji);setTimeout(()=>emoji.remove(),6000);},1000);
+</script>
+
+<style>
+@keyframes floatEmoji{0%{transform:translateY(0);opacity:0.8}100%{transform:translateY(-100vh);opacity:0}}
+.emoji{pointer-events:none;position:absolute;}
+</style>
+
 </body>
 </html>
